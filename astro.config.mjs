@@ -14,7 +14,10 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: { include: ['src/polyfill.js'] },
+    optimizeDeps: { include: ['polyfills.js'] },
+    ssr: {
+      noExternal: ['react', 'react-dom'], // Fuerza a Vite a incluir React en SSR
+    },
   },
 
   integrations: [icon(), react()],
