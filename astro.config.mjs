@@ -18,5 +18,6 @@ export default defineConfig({
 
   integrations: [icon(), react()],
   prefetch: true,
+  output: "server",
   adapter: netlify(),
 });
