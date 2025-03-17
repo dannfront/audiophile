@@ -1,0 +1,41 @@
+---
+import { Picture } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    image: ImageMetadata;
+    title: string;
+    href: string;
+    isSize?: boolean;
+}
+
+const { image, href, title, isSize = false } = Astro.props;
+---
+
+<section
+    class="relative max-w-[90%] w-[300px] md:w-[200px] lg:w-[30%] h-[130px] lg:h-[170px] text-center bg-[#f1f1f1] rounded-lg mx-auto"
+>
+    <div
+        class=`absolute top-[-25%] left-1/2 -translate-x-1/2 size-[110px] md:size-[100px] lg:size-[140px]`
+    >
+        <Picture
+            src={image}
+            alt={title}
+            loading="lazy"
+            quality={50}
+            widths={[110, 100, 140]}
+            sizes=`(max-width: 360px) 110px, (max-width: 768px) 100px, (max-width: 1024px) 140px`
+            formats={["avif", "webp", "jpeg", "jpg"]}
+        />
+    </div>
+
+    <div class="pt-16 lg:pt-20">
+        <h2 class="font-bold">{title}</h2>
+        <a
+            class="w-[50px] text-sm flex items-center gap-2 mx-auto hover:text-[#D87D4A] transition-all"
+            href={`/${href}`}
+            >SHOP
+            <Icon name="icon-arrow-right" class="h-[12px]" />
+        </a>
+    </div>
+</section>

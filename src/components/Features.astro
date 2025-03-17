@@ -1,0 +1,11 @@
+---
+interface Props {
+    features: string;
+}
+const { features } = Astro.props;
+---
+
+<section class="lg:w-[500px] min-[70rem]:w-[640px]">
+    <h3 class="text-xl font-bold md:text-2xl">FEATURES</h3>
+    <p class="opacity-50 whitespace-pre-wrap lg:mt-5">{features}</p>
+</section>

@@ -1,0 +1,70 @@
+---
+import LogoAudiophile from "../../assets/shared/desktop/logo.svg";
+import IconFacebook from "../../assets/shared/desktop/icon-facebook.svg";
+import IconInstagram from "../../assets/shared/desktop/icon-instagram.svg";
+import IconTwitter from "../../assets/shared/desktop/icon-twitter.svg";
+import NavLinks from "../NavLinks.astro";
+---
+
+<footer
+    class="bg-[#101010] p-6 md:p-16 lg:p-26 grid grid-rows-[auto_auto_auto_auto] gap-5 lg:grid-cols-[auto_auto_auto]"
+>
+    <img
+        class="mx-auto md:mx-0 lg:align-self-center"
+        src={LogoAudiophile.src}
+        alt="logo-audiophile"
+    />
+
+    <ul
+        class=`lg:h-[20px] flex flex-col items-center gap-5 md:flex-row md:gap-5 lg:col-start-2 lg:col-end-4 lg:justify-between`
+    >
+        <li class="text-white text-sm font-medium">
+            <a
+                class="hover:text-[#D87D4A] transition-colors"
+                href="/"
+                data-astro-prefetch>HOME</a
+            >
+        </li>
+        <li class="text-white text-sm font-medium">
+            <a
+                class="hover:text-[#D87D4A] transition-colors"
+                href="/headphones"
+                data-astro-prefetch>HEADPHONES</a
+            >
+        </li>
+        <li class="text-white text-sm font-medium">
+            <a
+                class="hover:text-[#D87D4A] transition-colors"
+                href="/speakers"
+                data-astro-prefetch>SPEAKERS</a
+            >
+        </li>
+        <li class="text-white text-sm font-medium">
+            <a
+                class="hover:text-[#D87D4A] transition-colors"
+                href="/earphones"
+                data-astro-prefetch>EARPHONES</a
+            >
+        </li>
+    </ul>
+
+    <p class="text-white opacity-[50%] text-justify lg:w-[500px]">
+        Audiophile is an all in one stop to fulfill your audio needs. We're a
+        small team of music lovers and sound specialists who are devoted to
+        helping you get the most out of personal audio. Come and visit our demo
+        facility - we’re open 7 days a week.
+    </p>
+
+    <p
+        class="text-white text-center opacity-[50%] md:text-base md:text-start lg:row-start-3"
+    >
+        Copyright 2021. All Rights Reserved
+    </p>
+    <div
+        class="h-[27px] flex justify-center md:justify-normal gap-3 lg:col-start-3 lg:justify-self-end lg:self-end"
+    >
+        <img class="size-5" src={IconFacebook.src} alt="icon-facebook" />
+        <img class="size-5" src={IconTwitter.src} alt="icon-twitter" />
+        <img class="size-5" src={IconInstagram.src} alt="icon-instagram" />
+    </div>
+</footer>

@@ -1,0 +1,15 @@
+---
+interface Props {
+    quantity: number;
+    item: string;
+}
+
+const { quantity, item } = Astro.props;
+---
+
+<li class="flex gap-5">
+    <p class="text-[#D87D4A] font-semibold">
+        {quantity}x
+    </p>
+    <p class="opacity-50">{item}</p>
+</li>

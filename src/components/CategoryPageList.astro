@@ -1,0 +1,23 @@
+---
+import type { Product } from "../interface/type";
+import CategoryPageItem from "./CategoryPageItem.astro";
+interface Props {
+    products: Product[];
+}
+
+const { products } = Astro.props;
+
+const productsOrder = products.sort((a, b) => {
+    if (a.new || a.price > b.price) {
+        return -1;
+    } else {
+        return 1;
+    }
+});
+---
+
+{
+    productsOrder.map((product, i) => (
+        <CategoryPageItem index={i++} product={product} />
+    ))
+}

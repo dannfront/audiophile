@@ -1,0 +1,38 @@
+---
+interface Props {
+    w: number;
+    isDesktop?: boolean;
+}
+const { w, isDesktop = false } = Astro.props;
+---
+
+<ul class=`hidden lg:w-[400px] lg:flex lg:justify-between`>
+    <li class="text-white font-medium">
+        <a
+            class="hover:text-[#D87D4A] transition-colors"
+            href="/"
+            data-astro-prefetch>HOME</a
+        >
+    </li>
+    <li class="text-white font-medium">
+        <a
+            class="hover:text-[#D87D4A] transition-colors"
+            href="/headphones"
+            data-astro-prefetch>HEADPHONES</a
+        >
+    </li>
+    <li class="text-white font-medium">
+        <a
+            class="hover:text-[#D87D4A] transition-colors"
+            href="/speakers"
+            data-astro-prefetch>SPEAKERS</a
+        >
+    </li>
+    <li class="text-white font-medium">
+        <a
+            class="hover:text-[#D87D4A] transition-colors"
+            href="/earphones"
+            data-astro-prefetch>EARPHONES</a
+        >
+    </li>
+</ul>

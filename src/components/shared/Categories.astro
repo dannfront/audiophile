@@ -1,0 +1,40 @@
+---
+import HeadPhones from "../../assets/shared/desktop/image-category-thumbnail-headphones.png";
+import Speakers from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
+import Earphones from "../../assets/shared/desktop/image-category-thumbnail-earphones.png";
+import CategoriesList from "./CategoriesList.astro";
+const categories = [
+    {
+        image: HeadPhones,
+        title: "HEADPHONES",
+        href: "headphones",
+    },
+    {
+        image: Speakers,
+        title: "SPEAKERS",
+        href: "speakers",
+    },
+    {
+        image: Earphones,
+        href: "earphones",
+        title: "EARPHONES",
+        isSize: true,
+    },
+];
+const arrayCategories = categories;
+---
+
+<article
+    class="w-[90%] lg:w-[85%] my-30 mx-auto space-y-16 md:space-y-0 md:flex lg:justify-between"
+>
+    {
+        arrayCategories.map((category) => (
+            <CategoriesList
+                title={category.title}
+                href={category.href}
+                image={category.image}
+                isSize={category.isSize}
+            />
+        ))
+    }
+</article>

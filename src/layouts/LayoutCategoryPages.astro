@@ -1,0 +1,84 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+import Footer from "../components/shared/Footer.astro";
+import BestAudio from "../components/shared/BestAudio.astro";
+import HeaderCategory from "../components/shared/HeaderCategory.astro";
+import MenuMobile from "../components/shared/MenuMobile.astro";
+import Cart from "../components/shared/Cart.astro";
+interface Props {
+    title?: string;
+    isTitle?: boolean;
+    showBestAudio?: boolean;
+    isBgWhite?: boolean;
+}
+
+const {
+    title = "Audiophile e-commerce website",
+    isTitle = false,
+    showBestAudio = true,
+    isBgWhite = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+            rel="stylesheet"
+        />
+        <title>{title.toUpperCase()}</title>
+        <ClientRouter />
+    </head>
+    <body class=`${isBgWhite ? "bg-white" : "bg-[#F1F1F1]"} text-[#2D2D2D]`>
+        <HeaderCategory title={title} isTitle={isTitle} />
+
+        <main class="w-[90%] lg:w-[80%] mx-auto">
+            <article class="space-y-16 mt-30">
+                <slot />
+            </article>
+        </main>
+
+        {
+            showBestAudio && (
+                <div class="w-[90%] lg:w-[80%] mx-auto">
+                    <BestAudio />
+                </div>
+            )
+        }
+        <Footer />
+
+        <MenuMobile />
+        <Cart />
+    </body>
+</html>
+
+<script>
+    import menuEventListener from "../scripts/toggleMenu.ts";
+    document.addEventListener("astro:page-load", () => {
+        const $selector = (element: string) =>
+            document.querySelector(element) as HTMLElement;
+
+        const $menuHamburger = $selector("#menu");
+        const $navMenu = $selector("#nav-menu");
+
+        const $cart = $selector("#cart");
+        const $cartSummary = $selector("#cart-summary");
+
+        const $overlay = $selector(".overlay-menu");
+
+        function removeCartSummary() {
+            $cartSummary.textContent = "";
+        }
+
+        menuEventListener($cart, $overlay, $cartSummary, removeCartSummary);
+        menuEventListener($menuHamburger, $overlay, $navMenu);
+    });
+</script>

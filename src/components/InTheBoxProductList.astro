@@ -1,0 +1,18 @@
+---
+import type { Product } from "../interface/type";
+import InTheBoxProductItem from "./InTheBoxProductItem.astro";
+
+interface Props {
+    includes: { quantity: number; item: string }[];
+}
+
+const { includes } = Astro.props;
+---
+
+<ul class="mt-2 space-y-3 lg:mt-5">
+    {
+        includes.map(({ quantity, item }) => (
+            <InTheBoxProductItem quantity={quantity} item={item} />
+        ))
+    }
+</ul>

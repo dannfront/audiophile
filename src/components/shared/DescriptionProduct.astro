@@ -1,0 +1,30 @@
+---
+interface Props {
+    description: string;
+    name: string;
+    isPageProduct?: boolean;
+    isNew?: boolean;
+}
+
+const { description, name, isNew = false, isPageProduct = false } = Astro.props;
+const Element = isPageProduct ? "h1" : "h2";
+---
+
+<div
+    class=` lg:w-[400px] min-[70rem]:w-[440px] space-y-3 lg:text-[17px] ${isPageProduct?"text-left":"text-center"} lg:text-left`
+>
+    {
+        isNew && (
+            <h3 class="text-xl  text-[#D87D4A] tracking-[3px]">New Product</h3>
+        )
+    }
+    <Element
+        class=`font-bold text-3xl md:text-4xl md:w-[250px] ${isPageProduct?"mx-0":"md:mx-auto"} lg:mx-0`
+    >
+        {name}
+    </Element>
+    <p class="opacity-50">
+        {description}
+    </p>
+    <slot />
+</div>

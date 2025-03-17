@@ -1,0 +1,49 @@
+---
+import { Picture } from "astro:assets";
+import type { Gallery } from "../interface/type";
+
+interface Props {
+    gallery: Gallery;
+    slug: string;
+}
+
+const { gallery, slug } = Astro.props;
+const { first, second, third } = gallery;
+
+const galleryImage1 = `.${first.desktop}`;
+const galleryImage2 = `.${second.desktop}`;
+const galleryImage3 = `.${third.desktop}`;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "../assets/*/*/*.{jpeg,jpg,png,gif}",
+);
+---
+
+<footer
+    class="max-w-[90%] md:max-w-full w-[327px] space-y-5 md:space-y-0 md:w-full mx-auto md:grid md:grid-cols-5 md:grid-rows-[auto_auto] md:gap-2"
+>
+    <div class="h-full md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-2">
+        <Picture
+            class="h-full w-full rounded-lg"
+            src={images[galleryImage1]()}
+            formats={["webp", "avif", "jpeg"]}
+            alt={slug}
+        />
+    </div>
+    <div class="h-full md:row-start-2 md:row-end-3 md:col-start-1 md:col-end-3">
+        <Picture
+            class="h-full w-full rounded-lg"
+            src={images[galleryImage2]()}
+            formats={["webp", "avif", "jpeg"]}
+            alt={slug}
+        />
+    </div>
+    <div class="h-fit md:col-start-3 md:col-end-6 md:row-start-1 md:row-end-3">
+        <Picture
+            class="rounded-lg w-full h-full"
+            src={images[galleryImage3]()}
+            formats={["webp", "avif", "jpeg"]}
+            alt={slug}
+        />
+    </div>
+</footer>

@@ -1,0 +1,67 @@
+---
+interface Props {
+    bgColor?: string;
+}
+import { Image, Picture } from "astro:assets";
+import LogoAudiophile from "../../assets/shared/desktop/logo.svg";
+import IconCart from "../../assets/shared/desktop/icon-cart.svg";
+import { Icon } from "astro-icon/components";
+
+const { bgColor } = Astro.props;
+---
+
+<nav
+    class=`flex items-center md:gap-10 lg:gap-0 lg:justify-between lg:w-full h-[80px] bg-[${bgColor?bgColor:"#101010"}] py-7 px-10 lg:px-30`
+>
+    <Icon
+        name="menu-hamburger"
+        class="size-7 lg:hidden"
+        id="menu"
+        cursor="pointer"
+    />
+    <div class="flex items-center justify-between w-full">
+        <div class="mx-auto md:m-0 md:pt-0">
+            <a href="/">
+                <Picture src={LogoAudiophile} alt="logo" quality={50} />
+            </a>
+        </div>
+        <ul class=`hidden lg:w-[400px] lg:flex lg:justify-between`>
+            <li class="text-white font-medium">
+                <a class="hover:text-[#D87D4A] transition-colors" href="/"
+                    >HOME</a
+                >
+            </li>
+            <li class="text-white font-medium">
+                <a
+                    class="hover:text-[#D87D4A] transition-colors"
+                    href="/headphones">HEADPHONES</a
+                >
+            </li>
+            <li class="text-white font-medium">
+                <a
+                    class="hover:text-[#D87D4A] transition-colors"
+                    href="/speakers">SPEAKERS</a
+                >
+            </li>
+            <li class="text-white font-medium">
+                <a
+                    class="hover:text-[#D87D4A] transition-colors"
+                    href="/earphones">EARPHONES</a
+                >
+            </li>
+        </ul>
+        <Image
+            id="cart"
+            quality={50}
+            src={IconCart}
+            alt="icon-cart"
+            class="cursor-pointer"
+        />
+    </div>
+</nav>
+<div class="md:w-[95%] lg:w-[85%] border-b border-opacity mx-auto"></div>
+<style>
+    .border-opacity {
+        border-color: rgba(255, 255, 255, 00.2);
+    }
+</style>

@@ -1,0 +1,69 @@
+---
+import { Picture } from "astro:assets";
+import type { Product } from "../interface/type";
+import DescriptionProduct from "./shared/DescriptionProduct.astro";
+interface Props {
+    product: Product;
+    index: number;
+}
+
+const { product, index } = Astro.props;
+
+const {
+    name,
+    categoryImage,
+    description,
+    slug,
+    category,
+    new: isNew,
+} = product;
+
+const imageProductDesktop = categoryImage.desktop;
+const imageProductTablet = categoryImage.tablet;
+
+const srcImgDesktop = `.${imageProductDesktop}`;
+const srcImgTablet = `.${imageProductTablet}`;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "../assets/*/*/*.{jpg,jpeg,png}",
+);
+---
+
+<section
+    class=`space-y-5 lg:flex lg:items-center lg:gap-20 lg:justify-center ${index % 2 == 0?"row-reverse":""}`
+>
+    <div
+        class="max-w-[90%] w-[327px] lg:w-[540px] lg:h-[560px] mx-auto lg:mx-0 md:hidden lg:block rounded-lg"
+    >
+        <Picture
+            src={images[srcImgDesktop]()}
+            alt={slug}
+            quality={50}
+            formats={["webp", "avif"]}
+            loading="lazy"
+            class="rounded-lg"
+        />
+    </div>
+    <div class="hidden md:block lg:hidden mx-auto">
+        <Picture
+            src={images[srcImgTablet]()}
+            alt={slug}
+            quality={50}
+            formats={["webp", "avif", "jpeg", "jpg"]}
+            loading="lazy"
+            class="rounded-lg"
+        />
+    </div>
+    <DescriptionProduct name={name} isNew={isNew} description={description}>
+        <a
+            class="block w-fit text-white bg-[#D87D4A] p-3 mx-auto transition-colors lg:mx-0 hover:bg-[#FBAF85]"
+            href={`/${category}/${slug}`}>SEE PRODUCT</a
+        >
+    </DescriptionProduct>
+</section>
+
+<style>
+    .row-reverse {
+        flex-direction: row-reverse;
+    }
+</style>

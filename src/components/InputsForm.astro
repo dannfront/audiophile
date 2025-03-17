@@ -1,0 +1,26 @@
+---
+interface Props {
+    label: string;
+    placeHolder: string;
+    type: string;
+    className?: string;
+}
+
+const {
+    label,
+    placeHolder,
+    type = "text",
+    className = "w-full md:w-[309px] md:h-[56px]",
+} = Astro.props;
+---
+
+<div>
+    <label class="font-bold" for={label}>{label}</label>
+    <input
+        class=`${className} block border rounded-lg border-[#CFCFCF] p-2`
+        type={type}
+        required
+        id={label}
+        placeholder={placeHolder}
+    />
+</div>

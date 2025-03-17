@@ -1,0 +1,43 @@
+---
+// filepath: /c:/Users/lilda/OneDrive/Documentos/Audiophile-e-commerce/src/pages/[category]/[product].astro
+import { Picture } from "astro:assets";
+import data from "../../data.json";
+import AddToCart from "../../components/react/AddToCart.tsx";
+import type { Product } from "../../interface/type";
+import LayoutCategoryPages from "../../layouts/LayoutCategoryPages.astro";
+import HeaderProduct from "../../components/HeaderProduct.astro";
+import InTheBox from "../../components/InTheBox.astro";
+import Features from "../../components/Features.astro";
+import FooterProduct from "../../components/FooterProduct.astro";
+
+export const prerender = true;
+
+export const getStaticPaths = () => {
+    return data.map((product) => {
+        return {
+            params: { category: product.category, product: product.slug },
+            props: {
+                productProps: data.find((pro) => pro.slug === product.slug),
+            },
+        };
+    });
+};
+
+const { product } = Astro.params;
+const { productProps } = Astro.props;
+
+const { slug, features, includes, gallery } = productProps as Product;
+---
+
+<LayoutCategoryPages title={slug}>
+    <HeaderProduct product={productProps!} />
+    <div
+        class="max-w-[90%] md:max-w-full w-[327px] md:w-full space-y-10 md:space-y-15 mx-auto text-justify lg:flex lg:justify-between lg:items-start lg:mt-30 min-[70rem]:justify-start min-[70rem]:gap-40"
+    >
+        <Features features={features} />
+
+        <InTheBox includes={includes} />
+    </div>
+
+    <FooterProduct gallery={gallery} slug={slug} />
+</LayoutCategoryPages>

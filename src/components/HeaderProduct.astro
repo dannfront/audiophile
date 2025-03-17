@@ -1,0 +1,63 @@
+---
+import type { Product } from "../interface/type";
+import { numberFormatUSD } from "../services/numberFormat";
+import ComponentResponsiveImage from "./ComponentResponsiveImage.astro";
+import AddToCart from "./react/AddToCart";
+import DescriptionProduct from "./shared/DescriptionProduct.astro";
+
+interface Props {
+    product: Product;
+}
+
+const { product } = Astro.props;
+const { name, image, slug, description, price, new: isNew, category } = product;
+
+const imageProductMobile = `.${image.mobile}`;
+const imageProductDesktop = `.${image.desktop}`;
+const imageProductTablet = `.${image.tablet}`;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "../assets/*/*/*.{jpeg,jpg,png,gif}",
+);
+
+const getImage = async (path: string) => {
+    const image = await images[path]?.();
+
+    return image.default;
+};
+---
+
+<header
+    class="max-w-[90%] md:max-w-full w-[327px] md:w-full space-y-10 md:space-y-0 mx-auto md:flex md:justify-between md:items-center md:mx-0"
+>
+    <div class="md:w-[281px] lg:w-[380px] min-[70rem]:w-[500px]">
+        <ComponentResponsiveImage
+            imgsUrl={[
+                await getImage(imageProductMobile),
+                await getImage(imageProductTablet),
+                await getImage(imageProductDesktop),
+            ]}
+            alt={slug}
+        />
+    </div>
+    <section class="md:w-[330px] lg:w-[380px] min-[70rem]:w-[440px]">
+        <DescriptionProduct
+            name={name}
+            isNew={isNew}
+            description={description}
+            isPageProduct
+        >
+            <h2 class="font-bold text-xl">
+                {numberFormatUSD(price)}
+            </h2>
+            <AddToCart
+                price={price}
+                name={name}
+                img={imageProductMobile}
+                slug={slug}
+                category={category}
+                client:only="react"
+            />
+        </DescriptionProduct>
+    </section>
+</header>

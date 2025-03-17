@@ -1,0 +1,14 @@
+---
+import InTheBoxProductList from "./InTheBoxProductList.astro";
+
+interface Props {
+    includes: { quantity: number; item: string }[];
+}
+const { includes } = Astro.props;
+---
+
+<section class="md:flex md:gap-44 lg:block">
+    <h3 class="text-xl font-bold md:text-2xl">IN THE BOX</h3>
+
+    <InTheBoxProductList includes={includes} />
+</section>

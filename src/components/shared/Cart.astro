@@ -1,0 +1,52 @@
+---
+import { numberFormatUSD } from "../../services/numberFormat";
+import Overlay from "../Overlay.astro";
+const cart = Astro.locals.cart;
+---
+
+<Overlay />
+
+<section
+    id="cart-summary"
+    class="hidden w-[90%] md:w-[377px] h-fit fixed top-5 right-5 bg-white p-5 rounded-lg"
+>
+</section>
+
+<script>
+    import Cookie from "js-cookie";
+    import cartFull from "../../templates/cartFull";
+    import emptyCart from "../../templates/emptyCart";
+    document.addEventListener("astro:page-load", () => {
+        const $selector = (element: string) =>
+            document.querySelector(element) as HTMLElement;
+
+        const $cart = $selector("#cart");
+        const $cartSummary = $selector("#cart-summary");
+        const $removecart = $selector("#remove-all");
+        const $overlay = $selector(".overlay-menu");
+
+        $cart.addEventListener("click", () => {
+            const cart = JSON.parse(Cookie.get("cart") ?? "[]") as [];
+
+            const template = cart.length ? cartFull(cart) : emptyCart(cart);
+
+            $cartSummary.insertAdjacentHTML("beforeend", template);
+        });
+
+        $cartSummary.addEventListener("click", (e) => {
+            const target = e.target as HTMLElement;
+            if (!target.classList.contains("remove-all")) return;
+
+            Cookie.remove("cart");
+            $cartSummary.textContent = "";
+            $cartSummary.classList.add("hidden");
+            $overlay.classList.add("hidden");
+        });
+    });
+</script>
+
+<style>
+    .border-opacity {
+        border-color: rgba(0, 0, 0, 0.5);
+    }
+</style>
