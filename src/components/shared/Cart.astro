@@ -27,7 +27,6 @@ const cart = Astro.locals.cart;
 
         $cart.addEventListener("click", () => {
             const cart = JSON.parse(Cookie.get("cart") ?? "[]") as [];
-            console.log(window.location.pathname);
 
             const template = cart.length ? cartFull(cart) : emptyCart(cart);
 
