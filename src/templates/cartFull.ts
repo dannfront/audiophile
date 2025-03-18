@@ -4,7 +4,6 @@ function cartFull(cart: []) {
 
     //headphones/assets/product-xx99-mark-two-headphones/mobile/image-product.jpg
 
-    console.log(`${cart[0]?.img.split("/").slice(2).join("/")}`);
 
 
 
