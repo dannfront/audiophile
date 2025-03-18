@@ -1,0 +1,26 @@
+---
+import data from "../data.json";
+import LayoutCategoryPages from "../layouts/LayoutCategoryPages.astro";
+import CategoryPageList from "../components/CategoryPageList.astro";
+
+export const getStaticPaths = () => {
+    const categories = [...new Set(data.map((product) => product.category))];
+    return categories.map((category) => {
+        return {
+            params: { category },
+            props: {
+                products: data.filter(
+                    (product) => product.category === category,
+                ),
+            },
+        };
+    });
+};
+
+const { category } = Astro.params;
+const products = data.filter((product) => product.category === category);
+---
+
+<LayoutCategoryPages title={category} isTitle>
+    <CategoryPageList products={products!} />
+</LayoutCategoryPages>
