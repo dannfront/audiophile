@@ -1,8 +1,5 @@
 ---
-// filepath: /c:/Users/lilda/OneDrive/Documentos/Audiophile-e-commerce/src/pages/[category]/[product].astro
-import { Picture } from "astro:assets";
 import data from "../../data.json";
-import AddToCart from "../../components/react/AddToCart.tsx";
 import type { Product } from "../../interface/type";
 import LayoutCategoryPages from "../../layouts/LayoutCategoryPages.astro";
 import HeaderProduct from "../../components/HeaderProduct.astro";
@@ -23,7 +20,6 @@ export const getStaticPaths = () => {
     });
 };
 
-const { product } = Astro.params;
 const { productProps } = Astro.props;
 
 const { slug, features, includes, gallery } = productProps as Product;

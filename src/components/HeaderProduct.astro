@@ -2,13 +2,12 @@
 import type { Product } from "../interface/type";
 import { numberFormatUSD } from "../services/numberFormat";
 import ComponentResponsiveImage from "./ComponentResponsiveImage.astro";
-import AddToCart from "./react/AddToCart";
+import AddToCart from "./react/AddToCart.tsx";
 import DescriptionProduct from "./shared/DescriptionProduct.astro";
 
 interface Props {
     product: Product;
 }
-
 const { product } = Astro.props;
 const { name, image, slug, description, price, new: isNew, category } = product;
 

@@ -21,5 +21,5 @@ export default defineConfig({
   integrations: [icon(), react()],
   prefetch: true,
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({ entrypoint: "src/index.astro" }),
 });

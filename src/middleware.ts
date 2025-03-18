@@ -1,5 +1,4 @@
 import { defineMiddleware } from "astro:middleware";
-import type { Product } from "./interface/type";
 
 // `context` y `next` son automáticamente tipados
 
