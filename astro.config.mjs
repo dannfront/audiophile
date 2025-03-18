@@ -8,6 +8,8 @@ import icon from 'astro-icon';
 
 import react from '@astrojs/react';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -17,4 +19,5 @@ export default defineConfig({
   integrations: [icon(), react()],
   prefetch: true,
   output: "server",
+  adapter: netlify(),
 });
