@@ -4,6 +4,9 @@ function cartFull(cart: []) {
 
     //headphones/assets/product-xx99-mark-two-headphones/mobile/image-product.jpg
 
+    console.log(`${window.location.pathname.split("/").slice(1, 2)}/${cart[0]?.img.split("/").slice(2).join("/")}`);
+    console.log(cart[0]?.img.split("/").slice(2).join("/"));
+
 
 
     const template = `
@@ -28,7 +31,7 @@ function cartFull(cart: []) {
                     <div class="flex items-center gap-2">
                         <div class="w-[64px] h-[64px]">
                             <img 
-                                src="${item.img.split("/").slice(2).join("/")}" 
+                                src="${window.location.pathname.split("/").slice(1, 2)}/${item.img.split("/").slice(2).join("/")}" 
                                 alt="${item.name}"
                                 onerror="this.src='https://img.freepik.com/vector-gratis/nina-feliz-mariposa_1450-103.jpg'"
                                 class="rounded-lg w-[64px] h-[64px] object-cover"
