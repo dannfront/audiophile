@@ -2,7 +2,7 @@ import { numberFormatUSD } from "../services/numberFormat.ts"
 
 function cartFull(cart: []) {
 
-    //headphones/product-xx99-mark-two-headphones/mobile/image-product.jpg
+    //headphones/assets/product-xx99-mark-two-headphones/mobile/image-product.jpg
 
 
 
