@@ -16,6 +16,9 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    alias: {
+        "react-dom/server": "react-dom/server.edge",
+      },
   },
 
   integrations: [icon(), react()],
