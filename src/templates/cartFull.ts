@@ -28,7 +28,7 @@ function cartFull(cart: []) {
                     <div class="flex items-center gap-2">
                         <div class="w-[64px] h-[64px]">
                             <img 
-                                src="${item.img.split("/").slice(3).join("/")}" 
+                                src="${item.img.split("/").slice(2).join("/")}" 
                                 alt="${item.name}"
                                 onerror="this.src='https://img.freepik.com/vector-gratis/nina-feliz-mariposa_1450-103.jpg'"
                                 class="rounded-lg w-[64px] h-[64px] object-cover"
