@@ -4,7 +4,6 @@ interface Props {
 }
 import { Image, Picture } from "astro:assets";
 import LogoAudiophile from "../../assets/shared/desktop/logo.svg";
-import IconCart from "../../assets/shared/desktop/icon-cart.svg";
 import { Icon } from "astro-icon/components";
 
 const { bgColor } = Astro.props;
@@ -50,13 +49,7 @@ const { bgColor } = Astro.props;
                 >
             </li>
         </ul>
-        <Image
-            id="cart"
-            quality={50}
-            src={IconCart}
-            alt="icon-cart"
-            class="cursor-pointer"
-        />
+        <Icon name="icon-cart" class="size-7 cursor-pointer" id="cart" />
     </div>
 </nav>
 <div class="md:w-[95%] lg:w-[85%] border-b border-opacity mx-auto"></div>

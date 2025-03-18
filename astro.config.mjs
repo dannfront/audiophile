@@ -8,20 +8,13 @@ import icon from 'astro-icon';
 
 import react from '@astrojs/react';
 
-import netlify from '@astrojs/netlify';
-
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: { include: ['polyfills.js'] },
-    ssr: {
-      noExternal: ['react', 'react-dom'], // Fuerza a Vite a incluir React en SSR
-    },
   },
 
   integrations: [icon(), react()],
   prefetch: true,
   output: "server",
-  adapter: netlify(),
 });
